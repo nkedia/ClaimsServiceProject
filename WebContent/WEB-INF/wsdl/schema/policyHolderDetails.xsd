@@ -15,11 +15,11 @@
     			type="Q1:periodOfInsuranceType">
     		</xsd:element>
     		<xsd:element name="NameOfInsured" type="string"></xsd:element>
-    		<xsd:element name="dob" type="date"></xsd:element>
-    		<xsd:element name="address" type="string"></xsd:element>
-    		<xsd:element name="pin" type="string"></xsd:element>
-    		<xsd:element name="phone" type="Q1:phoneType"></xsd:element>
-    		<xsd:element name="email" type="string"></xsd:element>
+    		<xsd:element name="dobOfInsured" type="date"></xsd:element>
+    		<xsd:element name="addressOfInsured" type="string"></xsd:element>
+    		<xsd:element name="pinOfInsured" type="string"></xsd:element>
+    		<xsd:element name="phoneOfInsured" type="Q1:phoneType"></xsd:element>
+    		<xsd:element name="emailOfInsured" type="string"></xsd:element>
     	</xsd:sequence>
     </xsd:complexType>
 
