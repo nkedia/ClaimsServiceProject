@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:tns="localhost:8080/ClaimsService/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified"
+  targetNamespace="localhost:8080/ClaimsService/accidentDetails"> 
+
+   
+    <xsd:complexType name="accidentDetailsType">
+    	<xsd:sequence>
+    		<xsd:element name="dateOfAccident" type="date"></xsd:element>
+    		<xsd:element name="time" type="time"></xsd:element>
+    		<xsd:element name="speed" type="string"></xsd:element>
+    		<xsd:element name="place" type="string"></xsd:element>
+    		<xsd:element name="noOfPeopleTravelling" type="string"></xsd:element>
+    		<xsd:element name="policeStationName" type="string"></xsd:element>
+    		<xsd:element name="FIRNo" type="string"></xsd:element>
+    		<xsd:element name="Mileage" type="string"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

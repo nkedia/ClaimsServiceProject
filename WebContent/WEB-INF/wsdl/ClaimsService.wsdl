@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions 
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:tns="localhost:8080/ClaimsService/" 
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+name="ClaimsService" 
+targetNamespace="localhost:8080/ClaimsService/"
+xmlns:phd="localhost:8080/ClaimsService/policyHolderDetails"
+xmlns:vd="localhost:8080/ClaimsService/vehicleDetails"
+xmlns:ad="localhost:8080/ClaimsService/accidentDetails"
+xmlns:sd="localhost:8080/ClaimsService/StatementsDetails"
+xmlns:dd="localhost:8080/ClaimsService/driverDetails"
+xmlns:dcd="localhost:8080/ClaimsService/documentDetails">
+
+  <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="localhost:8080/ClaimsService/">
+        	
+            <xsd:import schemaLocation="schema/driverDetails.xsd" namespace="localhost:8080/ClaimsService/driverDetails"></xsd:import>
+            <xsd:import schemaLocation="schema/accidentDetails.xsd" namespace="localhost:8080/ClaimsService/accidentDetails"></xsd:import>
+            <xsd:import schemaLocation="schema/VehicleDetails.xsd" namespace="localhost:8080/ClaimsService/vehicleDetails"></xsd:import>
+            <xsd:import schemaLocation="schema/policyHolderDetails.xsd" namespace="localhost:8080/ClaimsService/policyHolderDetails"></xsd:import>
+    
+        	
+        	<xsd:element name="fileNewClaim">
+        		<xsd:complexType>
+        			<xsd:sequence>
+        				<xsd:element name="userId" type="xsd:string" />
+        				<xsd:element name="policyHolderDetails" type="phd:policyHolderDetailsType"/>
+        				<xsd:element name="vehicleDetails" type="vd:vehicleDetailsType"/>
+        				<xsd:element name="accidentDetails" type="ad:accidentDetailsType"/>
+        				<xsd:element name="driverDetails" type="dd:driverDetailsType"/>
+        			</xsd:sequence>
+        		</xsd:complexType>
+        	</xsd:element>
+        	
+        	<xsd:element name="fileNewClaimResponse">
+        		<xsd:complexType>
+        			<xsd:sequence>
+        				<xsd:element name="claimsID" type="xsd:string"/>
+        				<xsd:element name="result" type="xsd:boolean"/>
+        			</xsd:sequence>
+        		</xsd:complexType>
+        	</xsd:element>
+        	
+        	<xsd:element name="getExistingClaims">
+        		<xsd:complexType>
+        			<xsd:sequence>
+        				<xsd:element name="userId" type="xsd:string"></xsd:element>
+        			</xsd:sequence>
+        		</xsd:complexType>
+        	</xsd:element>
+        	
+        	<xsd:element name="getExistingClaimsResponse">
+        		<xsd:complexType>
+        			<xsd:sequence>
+        				<xsd:element name="claims"
+        					type="tns:claimsType" maxOccurs="unbounded" minOccurs="0">
+        				</xsd:element>
+        			</xsd:sequence>
+        		</xsd:complexType>
+        	</xsd:element>
+        	<xsd:complexType name="claimsType">
+        		<xsd:sequence>
+        			<xsd:element name="userId" type="xsd:string" />
+        			<xsd:element name="claimId" type="xsd:string" />
+        			<xsd:element name="claimStatus" type="xsd:string" />
+        			<xsd:element name="amountSettled" type="xsd:string" />
+        			<xsd:element name="dateOfSettlement"
+        				type="xsd:date" />
+        			<xsd:element name="policyHolderDetails"
+        				type="phd:policyHolderDetailsType" />
+        			<xsd:element name="vehicleDetails"
+        				type="vd:vehicleDetailsType" />
+        			<xsd:element name="accidentDetails"
+        				type="ad:accidentDetailsType" />
+        			<xsd:element name="driverDetails"
+        				type="dd:driverDetailsType" />
+        		</xsd:sequence>
+        	</xsd:complexType>
+
+        </xsd:schema>
+    </wsdl:types>
+
+
+  <wsdl:message name="fileNewClaimRequest">
+  	<wsdl:part name="parameters" element="tns:fileNewClaim"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="fileNewClaimResponse">
+  	<wsdl:part name="parameters" element="tns:fileNewClaimResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getExistingClaimsRequest">
+  	<wsdl:part name="parameters" element="tns:getExistingClaims"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getExistingClaimsResponse">
+  	<wsdl:part name="parameters" element="tns:getExistingClaimsResponse"></wsdl:part>
+  </wsdl:message>
+  
+  <wsdl:portType name="ClaimsService">
+        <wsdl:operation name="fileNewClaim">
+        	<wsdl:input message="tns:fileNewClaimRequest"></wsdl:input>
+        	<wsdl:output message="tns:fileNewClaimResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getExistingClaims">
+        	<wsdl:input message="tns:getExistingClaimsRequest"></wsdl:input>
+        	<wsdl:output message="tns:getExistingClaimsResponse"></wsdl:output>
+        </wsdl:operation>
+  </wsdl:portType>
+  
+  <wsdl:binding name="ClaimsServiceSOAP" type="tns:ClaimsService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="fileNewClaim">
+      <soap:operation soapAction="fileNewClaim"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getExistingClaims">
+      <soap:operation soapAction="getExistingClaims"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  
+  <wsdl:service name="ClaimsService">
+    <wsdl:port binding="tns:ClaimsServiceSOAP" name="ClaimsServiceSOAP">
+      <soap:address location="http://localhost:8080/ClaimsServiceProject/services/ClaimsService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

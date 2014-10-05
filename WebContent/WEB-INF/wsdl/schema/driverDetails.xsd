@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:tns="localhost:8080/ClaimsService/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified"
+  targetNamespace="localhost:8080/ClaimsService/driverDetails" xmlns:Q1="localhost:8080/ClaimsService/driverDetails">
+
+ 
+    <xsd:complexType name="driverDetailsType">
+    	<xsd:sequence>
+    		<xsd:element name="name" type="string"></xsd:element>
+    		<xsd:element name="relationWithInsured" type="string"></xsd:element>
+    		<xsd:element name="address" type="string"></xsd:element>
+    		<xsd:element name="contactNo" type="string"></xsd:element>
+    		<xsd:element name="DOB" type="date"></xsd:element>
+    		<xsd:element name="license" type="Q1:licenseType"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="licenseType">
+    	<xsd:sequence>
+    		<xsd:element name="licenseNo" type="string"></xsd:element>
+    		<xsd:element name="issuingRTO" type="string"></xsd:element>
+    		<xsd:element name="effectiveFrom" type="date"></xsd:element>
+    		<xsd:element name="expiryDate" type="date"></xsd:element>
+    		<xsd:element name="class" type="Q1:classType"></xsd:element>
+    		<xsd:element name="type" type="Q1:type"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:simpleType name="classType">
+    	<xsd:restriction base="xsd:string">
+        		<xsd:enumeration value="MCycle"/>
+        		<xsd:enumeration value="LMV"/>
+        		<xsd:enumeration value="HGV"/>
+       			<xsd:enumeration value="Transport"/>
+       			<xsd:enumeration value="Non-Transport"/>
+    	</xsd:restriction>
+	</xsd:simpleType>
+    <xsd:simpleType name="type">
+    	<xsd:restriction base="xsd:string">
+        		<xsd:enumeration value="Permanent"/>
+        		<xsd:enumeration value="Learners"/>
+    	</xsd:restriction>
+	</xsd:simpleType>
+ 
+</xsd:schema>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:tns="localhost:8080/ClaimsService/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified"
+  targetNamespace="localhost:8080/ClaimsService/policyHolderDetails" 
+  xmlns:Q1="localhost:8080/ClaimsService/policyHolderDetails">
+
+    
+    <xsd:complexType name="policyHolderDetailsType">
+    	<xsd:sequence>
+    		<xsd:element name="PolicyNo" type="string"></xsd:element>
+    		<xsd:element name="coverNoteNo" type="string"></xsd:element>
+    		<xsd:element name="periodOfInsurance"
+    			type="Q1:periodOfInsuranceType">
+    		</xsd:element>
+    		<xsd:element name="NameOfInsured" type="string"></xsd:element>
+    		<xsd:element name="dob" type="date"></xsd:element>
+    		<xsd:element name="address" type="string"></xsd:element>
+    		<xsd:element name="pin" type="string"></xsd:element>
+    		<xsd:element name="phone" type="Q1:phoneType"></xsd:element>
+    		<xsd:element name="email" type="string"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="periodOfInsuranceType">
+    	<xsd:sequence>
+    		<xsd:element name="from" type="date"></xsd:element>
+    		<xsd:element name="to" type="date"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="phoneType">
+    	<xsd:sequence>
+    		<xsd:element name="office" type="string"></xsd:element>
+    		<xsd:element name="residence" type="string"></xsd:element>
+    		<xsd:element name="mobile" type="string"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:tns="localhost:8080/ClaimsService/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified"
+  targetNamespace="localhost:8080/ClaimsService/vehicleDetails"> 
+
+    <xsd:complexType name="vehicleDetailsType">
+    	<xsd:sequence>
+    		<xsd:element name="regdNo" type="string"></xsd:element>
+    		<xsd:element name="make" type="string"></xsd:element>
+    		<xsd:element name="dateOfFirstRegistration" type="date"></xsd:element>
+    		<xsd:element name="chassisNo" type="string"></xsd:element>
+    		<xsd:element name="engineNo" type="string"></xsd:element>
+    		<xsd:element name="dateOfTransfer" type="date"></xsd:element>
+    		<xsd:element name="typeOfFuel" type="string"></xsd:element>
+    		<xsd:element name="color" type="string"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+
+</xsd:schema>
