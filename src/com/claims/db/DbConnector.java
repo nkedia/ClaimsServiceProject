@@ -1,4 +1,4 @@
-package com.claim.db;
+package com.claims.db;
 
 import java.sql.DriverManager;
 import java.sql.Connection;

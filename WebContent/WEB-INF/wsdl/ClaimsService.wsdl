@@ -77,34 +77,6 @@ xmlns:dcd="localhost:8080/ClaimsService/documentDetails">
         		</xsd:sequence>
         	</xsd:complexType>
 
-        	<xsd:element name="sendDocuments">
-        		<xsd:complexType>
-        			<xsd:sequence>
-        				<xsd:element name="in" type="xsd:string"></xsd:element>
-        			</xsd:sequence>
-        		</xsd:complexType>
-        	</xsd:element>
-        	<xsd:element name="sendDocumentsResponse">
-        		<xsd:complexType>
-        			<xsd:sequence>
-        				<xsd:element name="out" type="xsd:string"></xsd:element>
-        			</xsd:sequence>
-        		</xsd:complexType>
-        	</xsd:element>
-        	<xsd:element name="retrieveDocuments">
-        		<xsd:complexType>
-        			<xsd:sequence>
-        				<xsd:element name="in" type="xsd:string"></xsd:element>
-        			</xsd:sequence>
-        		</xsd:complexType>
-        	</xsd:element>
-        	<xsd:element name="retrieveDocumentsResponse">
-        		<xsd:complexType>
-        			<xsd:sequence>
-        				<xsd:element name="out" type="xsd:string"></xsd:element>
-        			</xsd:sequence>
-        		</xsd:complexType>
-        	</xsd:element>
         </xsd:schema>
     </wsdl:types>
 
@@ -122,18 +94,6 @@ xmlns:dcd="localhost:8080/ClaimsService/documentDetails">
   	<wsdl:part name="parameters" element="tns:getExistingClaimsResponse"></wsdl:part>
   </wsdl:message>
 
-  <wsdl:message name="sendDocumentsRequest">
-  	<wsdl:part name="parameters" element="tns:sendDocuments"></wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="sendDocumentsResponse">
-  	<wsdl:part name="parameters" element="tns:sendDocumentsResponse"></wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="retrieveDocumentsRequest">
-  	<wsdl:part name="parameters" element="tns:retrieveDocuments"></wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="retrieveDocumentsResponse">
-  	<wsdl:part name="parameters" element="tns:retrieveDocumentsResponse"></wsdl:part>
-  </wsdl:message>
   <wsdl:portType name="ClaimsService">
         <wsdl:operation name="fileNewClaim">
         	<wsdl:input message="tns:fileNewClaimRequest"></wsdl:input>
@@ -142,14 +102,6 @@ xmlns:dcd="localhost:8080/ClaimsService/documentDetails">
         <wsdl:operation name="getExistingClaims">
         	<wsdl:input message="tns:getExistingClaimsRequest"></wsdl:input>
         	<wsdl:output message="tns:getExistingClaimsResponse"></wsdl:output>
-        </wsdl:operation>
-        <wsdl:operation name="sendDocuments">
-        	<wsdl:input message="tns:sendDocumentsRequest"></wsdl:input>
-        	<wsdl:output message="tns:sendDocumentsResponse"></wsdl:output>
-        </wsdl:operation>
-        <wsdl:operation name="retrieveDocuments">
-        	<wsdl:input message="tns:retrieveDocumentsRequest"></wsdl:input>
-        	<wsdl:output message="tns:retrieveDocumentsResponse"></wsdl:output>
         </wsdl:operation>
   </wsdl:portType>
   

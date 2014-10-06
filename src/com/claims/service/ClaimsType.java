@@ -1,24 +1,28 @@
 
-package com.claim.service;
+package com.claims.service;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * <p>Java class for claimsType complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType>
+ * &lt;complexType name="claimsType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="userId" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="claimId" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="claimStatus" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="amountSettled" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="dateOfSettlement" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         &lt;element name="policyHolderDetails" type="{localhost:8080/ClaimsService/policyHolderDetails}policyHolderDetailsType"/>
  *         &lt;element name="vehicleDetails" type="{localhost:8080/ClaimsService/vehicleDetails}vehicleDetailsType"/>
  *         &lt;element name="accidentDetails" type="{localhost:8080/ClaimsService/accidentDetails}accidentDetailsType"/>
@@ -32,18 +36,27 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "userId",
+@XmlType(name = "claimsType", propOrder = {
+    "claimId",
+    "claimStatus",
+    "amountSettled",
+    "dateOfSettlement",
     "policyHolderDetails",
     "vehicleDetails",
     "accidentDetails",
     "driverDetails"
 })
-@XmlRootElement(name = "fileNewClaim")
-public class FileNewClaim {
+public class ClaimsType {
 
     @XmlElement(required = true)
-    protected String userId;
+    protected String claimId;
+    @XmlElement(required = true)
+    protected String claimStatus;
+    @XmlElement(required = true)
+    protected String amountSettled;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar dateOfSettlement;
     @XmlElement(required = true)
     protected PolicyHolderDetailsType policyHolderDetails;
     @XmlElement(required = true)
@@ -54,27 +67,99 @@ public class FileNewClaim {
     protected DriverDetailsType driverDetails;
 
     /**
-     * Gets the value of the userId property.
+     * Gets the value of the claimId property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getUserId() {
-        return userId;
+    public String getClaimId() {
+        return claimId;
     }
 
     /**
-     * Sets the value of the userId property.
+     * Sets the value of the claimId property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setUserId(String value) {
-        this.userId = value;
+    public void setClaimId(String value) {
+        this.claimId = value;
+    }
+
+    /**
+     * Gets the value of the claimStatus property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getClaimStatus() {
+        return claimStatus;
+    }
+
+    /**
+     * Sets the value of the claimStatus property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setClaimStatus(String value) {
+        this.claimStatus = value;
+    }
+
+    /**
+     * Gets the value of the amountSettled property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAmountSettled() {
+        return amountSettled;
+    }
+
+    /**
+     * Sets the value of the amountSettled property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAmountSettled(String value) {
+        this.amountSettled = value;
+    }
+
+    /**
+     * Gets the value of the dateOfSettlement property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getDateOfSettlement() {
+        return dateOfSettlement;
+    }
+
+    /**
+     * Sets the value of the dateOfSettlement property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setDateOfSettlement(XMLGregorianCalendar value) {
+        this.dateOfSettlement = value;
     }
 
     /**

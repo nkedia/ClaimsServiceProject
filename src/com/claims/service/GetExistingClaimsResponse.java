@@ -1,5 +1,5 @@
 
-package com.claim.service;
+package com.claims.service;
 
 import java.util.ArrayList;
 import java.util.List;

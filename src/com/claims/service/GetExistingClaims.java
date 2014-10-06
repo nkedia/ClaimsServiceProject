@@ -1,5 +1,5 @@
 
-package com.claim.service;
+package com.claims.service;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -18,8 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="claimsID" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="result" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="policyId" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,54 +29,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "claimsID",
-    "result"
+    "policyId"
 })
-@XmlRootElement(name = "fileNewClaimResponse")
-public class FileNewClaimResponse {
+@XmlRootElement(name = "getExistingClaims")
+public class GetExistingClaims {
 
     @XmlElement(required = true)
-    protected String claimsID;
-    protected boolean result;
+    protected String policyId;
 
     /**
-     * Gets the value of the claimsID property.
+     * Gets the value of the policyId property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getClaimsID() {
-        return claimsID;
+    public String getPolicyId() {
+        return policyId;
     }
 
     /**
-     * Sets the value of the claimsID property.
+     * Sets the value of the policyId property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setClaimsID(String value) {
-        this.claimsID = value;
-    }
-
-    /**
-     * Gets the value of the result property.
-     * 
-     */
-    public boolean isResult() {
-        return result;
-    }
-
-    /**
-     * Sets the value of the result property.
-     * 
-     */
-    public void setResult(boolean value) {
-        this.result = value;
+    public void setPolicyId(String value) {
+        this.policyId = value;
     }
 
 }

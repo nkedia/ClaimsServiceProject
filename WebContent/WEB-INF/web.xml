@@ -40,7 +40,7 @@
   <servlet>
     <display-name>ClaimsService</display-name>
     <servlet-name>ClaimsService</servlet-name>
-    <servlet-class>com.claim.service.impl.ClaimsServiceImpl</servlet-class>
+    <servlet-class>com.claims.service.impl.ClaimsServiceImpl</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ClaimsService</servlet-name>

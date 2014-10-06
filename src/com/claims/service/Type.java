@@ -1,5 +1,5 @@
 
-package com.claim.service;
+package com.claims.service;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;

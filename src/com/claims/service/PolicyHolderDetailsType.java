@@ -1,5 +1,5 @@
 
-package com.claim.service;
+package com.claims.service;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -23,11 +23,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="coverNoteNo" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="periodOfInsurance" type="{localhost:8080/ClaimsService/policyHolderDetails}periodOfInsuranceType"/>
  *         &lt;element name="NameOfInsured" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="dob" type="{http://www.w3.org/2001/XMLSchema}date"/>
- *         &lt;element name="address" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="pin" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="phone" type="{localhost:8080/ClaimsService/policyHolderDetails}phoneType"/>
- *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="dobOfInsured" type="{http://www.w3.org/2001/XMLSchema}date"/>
+ *         &lt;element name="addressOfInsured" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="pinOfInsured" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="phoneOfInsured" type="{localhost:8080/ClaimsService/policyHolderDetails}phoneType"/>
+ *         &lt;element name="emailOfInsured" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -42,11 +42,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "coverNoteNo",
     "periodOfInsurance",
     "nameOfInsured",
-    "dob",
-    "address",
-    "pin",
-    "phone",
-    "email"
+    "dobOfInsured",
+    "addressOfInsured",
+    "pinOfInsured",
+    "phoneOfInsured",
+    "emailOfInsured"
 })
 public class PolicyHolderDetailsType {
 
@@ -60,15 +60,15 @@ public class PolicyHolderDetailsType {
     protected String nameOfInsured;
     @XmlElement(namespace = "localhost:8080/ClaimsService/policyHolderDetails", required = true)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar dob;
+    protected XMLGregorianCalendar dobOfInsured;
     @XmlElement(namespace = "localhost:8080/ClaimsService/policyHolderDetails", required = true)
-    protected String address;
+    protected String addressOfInsured;
     @XmlElement(namespace = "localhost:8080/ClaimsService/policyHolderDetails", required = true)
-    protected String pin;
+    protected String pinOfInsured;
     @XmlElement(namespace = "localhost:8080/ClaimsService/policyHolderDetails", required = true)
-    protected PhoneType phone;
+    protected PhoneType phoneOfInsured;
     @XmlElement(namespace = "localhost:8080/ClaimsService/policyHolderDetails", required = true)
-    protected String email;
+    protected String emailOfInsured;
 
     /**
      * Gets the value of the policyNo property.
@@ -167,123 +167,123 @@ public class PolicyHolderDetailsType {
     }
 
     /**
-     * Gets the value of the dob property.
+     * Gets the value of the dobOfInsured property.
      * 
      * @return
      *     possible object is
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public XMLGregorianCalendar getDob() {
-        return dob;
+    public XMLGregorianCalendar getDobOfInsured() {
+        return dobOfInsured;
     }
 
     /**
-     * Sets the value of the dob property.
+     * Sets the value of the dobOfInsured property.
      * 
      * @param value
      *     allowed object is
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setDob(XMLGregorianCalendar value) {
-        this.dob = value;
+    public void setDobOfInsured(XMLGregorianCalendar value) {
+        this.dobOfInsured = value;
     }
 
     /**
-     * Gets the value of the address property.
+     * Gets the value of the addressOfInsured property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getAddress() {
-        return address;
+    public String getAddressOfInsured() {
+        return addressOfInsured;
     }
 
     /**
-     * Sets the value of the address property.
+     * Sets the value of the addressOfInsured property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setAddress(String value) {
-        this.address = value;
+    public void setAddressOfInsured(String value) {
+        this.addressOfInsured = value;
     }
 
     /**
-     * Gets the value of the pin property.
+     * Gets the value of the pinOfInsured property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getPin() {
-        return pin;
+    public String getPinOfInsured() {
+        return pinOfInsured;
     }
 
     /**
-     * Sets the value of the pin property.
+     * Sets the value of the pinOfInsured property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setPin(String value) {
-        this.pin = value;
+    public void setPinOfInsured(String value) {
+        this.pinOfInsured = value;
     }
 
     /**
-     * Gets the value of the phone property.
+     * Gets the value of the phoneOfInsured property.
      * 
      * @return
      *     possible object is
      *     {@link PhoneType }
      *     
      */
-    public PhoneType getPhone() {
-        return phone;
+    public PhoneType getPhoneOfInsured() {
+        return phoneOfInsured;
     }
 
     /**
-     * Sets the value of the phone property.
+     * Sets the value of the phoneOfInsured property.
      * 
      * @param value
      *     allowed object is
      *     {@link PhoneType }
      *     
      */
-    public void setPhone(PhoneType value) {
-        this.phone = value;
+    public void setPhoneOfInsured(PhoneType value) {
+        this.phoneOfInsured = value;
     }
 
     /**
-     * Gets the value of the email property.
+     * Gets the value of the emailOfInsured property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getEmail() {
-        return email;
+    public String getEmailOfInsured() {
+        return emailOfInsured;
     }
 
     /**
-     * Sets the value of the email property.
+     * Sets the value of the emailOfInsured property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setEmail(String value) {
-        this.email = value;
+    public void setEmailOfInsured(String value) {
+        this.emailOfInsured = value;
     }
 
 }
