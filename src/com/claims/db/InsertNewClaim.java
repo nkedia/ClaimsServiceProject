@@ -1,7 +1,10 @@
 package com.claims.db;
 
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Time;
 
 import com.claims.service.AccidentDetailsType;
@@ -11,12 +14,16 @@ import com.claims.service.VehicleDetailsType;
 
 public class InsertNewClaim {
 
-	public static int insertClaim(PolicyHolderDetailsType policyHolderDetails,
+	public static void main(String args[]){ 
+	
+	/*int insertClaim(PolicyHolderDetailsType policyHolderDetails,
 			VehicleDetailsType vehicleDetails,
 			AccidentDetailsType accidentDetails, DriverDetailsType driverDetails) {
-		
+*/
+		Connection conn = DbConnector.getConnection();
 		PreparedStatement insertClaim = null;
-		Date insuranceFrom = new Date(policyHolderDetails.getPeriodOfInsurance().getFrom().getMillisecond());
+		int claimId = 0;
+/*		Date insuranceFrom = new Date(policyHolderDetails.getPeriodOfInsurance().getFrom().getMillisecond());
 		Date insuranceTo = new Date(policyHolderDetails.getPeriodOfInsurance().getTo().getMillisecond());
 		Date dobOfInsured = new Date(policyHolderDetails.getDobOfInsured().getMillisecond());
 		Date dateOfFirstRegistration = new Date(vehicleDetails.getDateOfFirstRegistration().getMillisecond());
@@ -25,47 +32,48 @@ public class InsertNewClaim {
 		Time timeOfAccident = new Time(accidentDetails.getTime().getMillisecond());
 		Date dateOfBirthOfDriver = new Date(driverDetails.getDOB().getMillisecond());
 		Date effectiveFrom = new Date(driverDetails.getLicense().getEffectiveFrom().getMillisecond());
-		Date expiryDate = new Date(driverDetails.getLicense().getExpiryDate().getMillisecond());
-		String insertClaimString = "INSERT INTO claims.claims" +
-									"(`policyNo`,"
-									+ "`coverNoteNo`,"
-									+ "`insuranceFrom`, "
-									+ "`insuranceTo`, "
-									+ "`NameOfInsured`,"
-									+ "`dobOfInsured`, "
-									+ "`addressOfInsured`, "
-									+ "`pinOfInsured`,"
-									+ "`officePhoneOfInsured`, "
-									+ "`residencePhoneOfInsured`,"
-									+ "`mobilePhoneOfInsured`, "
-									+ "`emailOfInsured`, "
-									+ "`regdNo`,"
-									+ "`make`, "
-									+ "`dateOfFirstRegistration`, "
-									+ "`chassisNo`, "
-									+ "`engineNo`,"
-									+ "`dateOfTransfer`, "
-									+ "`typeOfFuel`, "
-									+ "`color`, "
-									+ "`dateOfAccident`,"
-									+ "`time`, "
-									+ "`speed`, "
-									+ "`place`, "
-									+ "`noOfPeopleTravelling`,"
-									+ "`policeStationName`, "
-									+ "`FIRNo`, "
-									+ "`Mileage`, "
-									+ "`nameOfDriver`," 
-									+ "`relationWithInsured`, "
-									+ "`addressOfDriver`, "
-									+ "`contactNoOfDriver`," 
-									+ "`dateOfBirthOfDriver`, "
-									+ "`licenseNo`, "
-									+ "`issuingRTO`," 
-									+ "`effectiveFrom`, "
-									+ "`expiryDate`, "
-									+ "`class`, "
-									+ "`licenseType`)"
+		Date expiryDate = new Date(driverDetails.getLicense().getExpiryDate().getMillisecond()); */
+		String insertClaimString = "INSERT INTO claims.Claims (policyNo) values (2341);";
+	/*	String insertClaimString = "INSERT INTO claims.Claims" +
+									"(policyNo,"
+									+ "coverNoteNo,"
+									+ "insuranceFrom, "
+									+ "insuranceTo, "
+									+ "NameOfInsured,"
+									+ "dobOfInsured, "
+									+ "addressOfInsured, "
+									+ "pinOfInsured, "
+									+ "officePhoneOfInsured, "
+									+ "residencePhoneOfInsured,"
+									+ "mobilePhoneOfInsured, "
+									+ "emailOfInsured, "
+									+ "regdNo,"
+									+ "make, "
+									+ "dateOfFirstRegistration, "
+									+ "chassisNo, "
+									+ "engineNo,"
+									+ "dateOfTransfer, "
+									+ "typeOfFuel, "
+									+ "color, "
+									+ "dateOfAccident,"
+									+ "time, "
+									+ "speed, "
+									+ "place, "
+									+ "noOfPeopleTravelling,"
+									+ "policeStationName, "
+									+ "FIRNo, "
+									+ "Mileage, "
+									+ "nameOfDriver," 
+									+ "relationWithInsured, "
+									+ "addressOfDriver, "
+									+ "contactNoOfDriver," 
+									+ "dateOfBirthOfDriver, "
+									+ "licenseNo, "
+									+ "issuingRTO," 
+									+ "effectiveFrom, "
+									+ "expiryDate, "
+									+ "class, "
+									+ "licenseType)"
 									+ "VALUES" 
 									+ "(" 
 									+ policyHolderDetails.getPolicyNo() + ",'"
@@ -106,9 +114,23 @@ public class InsertNewClaim {
 									+ effectiveFrom + ","
 									+ expiryDate + ",'"
 									+ driverDetails.getLicense().getClazz().value() + "','"
-									+ driverDetails.getLicense().getType().value() + "');";						;
-		
-		return 0;
+									+ driverDetails.getLicense().getType().value() + "');"; */
+		try{
+			conn.setAutoCommit(false);
+			insertClaim = conn.prepareStatement(insertClaimString);
+			insertClaim.execute();
+			String selectClaimString = "select * from claims.Claims where policyNo=2341";
+			PreparedStatement selectClaim = conn.prepareStatement(selectClaimString);
+			ResultSet rs = selectClaim.executeQuery();
+			while(rs.next()){
+				claimId = rs.getInt(1);
+			}
+		}
+		catch(SQLException sqle){
+			sqle.printStackTrace();
+		}
+		System.out.println(claimId + " this is claim ID");
+		//return claimId;
 	}
 
 }
