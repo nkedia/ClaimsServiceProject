@@ -4,6 +4,7 @@ package com.claims.service.impl;
 import java.util.List;
 
 import javax.jws.WebService;
+import javax.xml.ws.Holder;
 
 import com.claims.db.ExistingClaims;
 import com.claims.db.InsertNewClaim;
@@ -23,15 +24,15 @@ public class ClaimsServiceImpl implements ClaimsService {
 				
 				int claimID = InsertNewClaim.insertClaim(policyHolderDetails, vehicleDetails, 
 							accidentDetails, driverDetails);
-				//Add claimID to holder
+				//TODO Add claimID to holder
+				claimsID = new Holder<String>(claimID + "");
 				
 		return;
 	}
 
 	public java.util.List<com.claims.service.ClaimsType> getExistingClaims(
 			java.lang.String policyId) {
-		//TODO
-				//contact Amazon RDS< on the basis of policyID, get all the claims data, send it back.
+		
 				List<ClaimsType> list = ExistingClaims.getExistingClaimsByPolicyNo(policyId);
 				return list;
 	}
