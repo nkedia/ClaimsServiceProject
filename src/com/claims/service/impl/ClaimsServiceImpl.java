@@ -22,11 +22,16 @@ public class ClaimsServiceImpl implements ClaimsService {
 			javax.xml.ws.Holder<java.lang.Boolean> result) {
 
 				
-				int claimID = InsertNewClaim.insertClaim(policyHolderDetails, vehicleDetails, 
-							accidentDetails, driverDetails);
+				//int claimID = InsertNewClaim.insertClaim(policyHolderDetails, vehicleDetails, 
+				//			accidentDetails, driverDetails);
 				//TODO Add claimID to holder
-				claimsID = new Holder<String>(claimID + "");
-				
+				int claimID = 1;
+				if(claimID != 0) {
+					claimsID = new Holder<String>();
+					claimsID.value = claimID + "";
+					result = new Holder<Boolean>();
+					result.value = true;
+				}
 		return;
 	}
 
