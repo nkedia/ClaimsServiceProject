@@ -4,7 +4,6 @@ package com.claims.service.impl;
 import java.util.List;
 
 import javax.jws.WebService;
-import javax.xml.ws.Holder;
 
 import com.claims.db.ExistingClaims;
 import com.claims.db.InsertNewClaim;
@@ -27,9 +26,7 @@ public class ClaimsServiceImpl implements ClaimsService {
 				//TODO Add claimID to holder
 				int claimID = 1;
 				if(claimID != 0) {
-					claimsID = new Holder<String>();
 					claimsID.value = claimID + "";
-					result = new Holder<Boolean>();
 					result.value = true;
 				}
 		return;
