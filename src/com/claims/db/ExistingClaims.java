@@ -165,7 +165,7 @@ public class ExistingClaims {
 	
 		AccidentDetailsType accidentDetails = new AccidentDetailsType();
 		Date dateOfAccident = rs.getDate(22);
-		Time timeOfAccident = rs.getTime(23);
+	//	Time timeOfAccident = rs.getTime(23);
 		String speed = rs.getString(24);
 		String place = rs.getString(25);
 		String noOfPeople = rs.getString(26);
@@ -178,7 +178,8 @@ public class ExistingClaims {
 		XMLGregorianCalendar gc1 =
 		     DatatypeFactory.newInstance().newXMLGregorianCalendar(cal1); 
 		GregorianCalendar cal2 = new GregorianCalendar();
-		cal1.setTime(timeOfAccident);
+	//TODO SET TIME
+		//cal1.setTime(timeOfAccident);
 		XMLGregorianCalendar gc2 =
 		     DatatypeFactory.newInstance().newXMLGregorianCalendar(cal2); 
 		

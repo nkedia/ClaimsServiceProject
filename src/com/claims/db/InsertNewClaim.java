@@ -72,41 +72,41 @@ public class InsertNewClaim {
 		//Date expiryDate = new Date(driverDetails.getLicense().getExpiryDate().getMillisecond()); 
 		//String insertClaimString = "INSERT INTO claims.Claims (policyNo) values (2341);";
 		String insertClaimString = "INSERT INTO claims.Claims" +
-									"(policyNo,"
-									+ "coverNoteNo,"
+									"(policyNo, "
+									+ "coverNoteNo, "
 									+ "insuranceFrom, "
 									+ "insuranceTo, "
-									+ "NameOfInsured,"
+									+ "NameOfInsured, "
 									+ "dobOfInsured, "
 									+ "addressOfInsured, "
 									+ "pinOfInsured, "
 									+ "officePhoneOfInsured, "
-									+ "residencePhoneOfInsured,"
+									+ "residencePhoneOfInsured, "
 									+ "mobilePhoneOfInsured, "
 									+ "emailOfInsured, "
-									+ "regdNo,"
+									+ "regdNo, "
 									+ "make, "
 									+ "dateOfFirstRegistration, "
 									+ "chassisNo, "
-									+ "engineNo,"
+									+ "engineNo, "
 									+ "dateOfTransfer, "
 									+ "typeOfFuel, "
 									+ "color, "
-									+ "dateOfAccident,"
+									+ "dateOfAccident, "
 									+ "time, "
 									+ "speed, "
 									+ "place, "
-									+ "noOfPeopleTravelling,"
+									+ "noOfPeopleTravelling, "
 									+ "policeStationName, "
 									+ "FIRNo, "
 									+ "Mileage, "
-									+ "nameOfDriver," 
+									+ "nameOfDriver, "
 									+ "relationWithInsured, "
 									+ "addressOfDriver, "
-									+ "contactNoOfDriver," 
+									+ "contactNoOfDriver, " 
 									+ "dateOfBirthOfDriver, "
 									+ "licenseNo, "
-									+ "issuingRTO," 
+									+ "issuingRTO, " 
 									+ "effectiveFrom, "
 									+ "expiryDate, "
 									+ "class, "
@@ -133,8 +133,9 @@ public class InsertNewClaim {
 									+ dateOfTransfer + ",'"
 									+ vehicleDetails.getTypeOfFuel() + "','"
 									+ vehicleDetails.getColor() + "',"
-									+ dateOfAccident + ","
-									+ timeOfAccident + ",'"
+									+ dateOfAccident + ",'"
+									/* + timeOfAccident */ //TODO add time 
+									+ "','"
 									+ accidentDetails.getSpeed() + "','"
 									+ accidentDetails.getPlace() + "','"
 									+ accidentDetails.getNoOfPeopleTravelling() + "','"
@@ -147,11 +148,13 @@ public class InsertNewClaim {
 									+ driverDetails.getContactNo() + "',"
 									+ dateOfBirthOfDriver + ",'"
 									+ driverDetails.getLicense().getLicenseNo() + "','"
-									+ driverDetails.getLicense().getIssuingRTO() + "','"		
+									+ driverDetails.getLicense().getIssuingRTO() + "',"		
 									+ effectiveFrom + ","
 									+ expiryDate + ",'"
-									+ driverDetails.getLicense().getClazz().value() + "','"
-									+ driverDetails.getLicense().getType().value() + "');";
+									+ /*driverDetails.getLicense().getClazz().value() +*/  "','" //TODO add class and type
+									+ /*driverDetails.getLicense().getType().value() + */"');";
+		
+		System.out.println(insertClaimString);
 		
 		try{
 			conn.setAutoCommit(false);
@@ -159,7 +162,7 @@ public class InsertNewClaim {
 			boolean isExexcute = insertClaim.execute();
 			if(isExexcute) {
 				//TODO correct select statement, we need to get claim id of last entered record
-				String selectClaimString = "select * from claims.Claims where policyNo=2341";
+				String selectClaimString = "select * from claims.Claims where policyNo='" + policyHolderDetails.getPolicyNo() + "';";
 				PreparedStatement selectClaim = conn.prepareStatement(selectClaimString);
 				ResultSet rs = selectClaim.executeQuery();
 				while(rs.next()) {
