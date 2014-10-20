@@ -56,7 +56,7 @@ public class ExistingClaims {
 	private static void getClaimStatus(Connection conn, int claimId,
 			ClaimsType claim) throws SQLException, DatatypeConfigurationException {
 		PreparedStatement getClaimsStatus = null;
-		String getClaimsStatusString = "select * from claims.ClaimsStatus where claimId = " + claimId;
+		String getClaimsStatusString = "select * from claims.ClaimStatus where claimId = " + claimId;
 		getClaimsStatus = conn.prepareStatement(getClaimsStatusString);
 		ResultSet rs = getClaimsStatus.executeQuery();
 		while(rs.next()) {
