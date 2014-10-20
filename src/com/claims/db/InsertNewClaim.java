@@ -16,7 +16,7 @@ public class InsertNewClaim {
 
 	public static int insertClaim(PolicyHolderDetailsType policyHolderDetails,
 			VehicleDetailsType vehicleDetails,
-			AccidentDetailsType accidentDetails, DriverDetailsType driverDetails) {
+			AccidentDetailsType accidentDetails, DriverDetailsType driverDetails) throws SQLException {
 
 		Connection conn = DbConnector.getConnection();
 		PreparedStatement insertClaim = null;
@@ -114,11 +114,11 @@ public class InsertNewClaim {
 									+ "VALUES" 
 									+ "('" 
 									+ policyHolderDetails.getPolicyNo() + "','"
-									+ policyHolderDetails.getCoverNoteNo() + "',"
-									+ insuranceFrom + ","
-									+ insuranceTo + ",'"
-									+ policyHolderDetails.getNameOfInsured() + "',"
-									+ dobOfInsured + ",'"
+									+ policyHolderDetails.getCoverNoteNo() + "','"
+									+ insuranceFrom + "','"
+									+ insuranceTo + "','"
+									+ policyHolderDetails.getNameOfInsured() + "','"
+									+ dobOfInsured + "','"
 									+ policyHolderDetails.getAddressOfInsured() + "','"
 									+ policyHolderDetails.getPinOfInsured() + "','"
 									+ policyHolderDetails.getPhoneOfInsured().getOffice() + "','"
@@ -126,14 +126,14 @@ public class InsertNewClaim {
 									+ policyHolderDetails.getPhoneOfInsured().getMobile() + "','"
 									+ policyHolderDetails.getEmailOfInsured() + "','"
 									+ vehicleDetails.getRegdNo() + "','" 
-									+ vehicleDetails.getMake() + "',"
-									+ dateOfFirstRegistration + ",'"
+									+ vehicleDetails.getMake() + "','"
+									+ dateOfFirstRegistration + "','"
 									+ vehicleDetails.getChassisNo() + "','"
-									+ vehicleDetails.getEngineNo() + "',"
-									+ dateOfTransfer + ",'"
+									+ vehicleDetails.getEngineNo() + "','"
+									+ dateOfTransfer + "','"
 									+ vehicleDetails.getTypeOfFuel() + "','"
-									+ vehicleDetails.getColor() + "',"
-									+ dateOfAccident + ",'"
+									+ vehicleDetails.getColor() + "','"
+									+ dateOfAccident + "','"
 									/* + timeOfAccident */ //TODO add time 
 									+ "','"
 									+ accidentDetails.getSpeed() + "','"
@@ -145,21 +145,22 @@ public class InsertNewClaim {
 									+ driverDetails.getName() + "','"
 									+ driverDetails.getRelationWithInsured() + "','"
 									+ driverDetails.getAddress() + "','"
-									+ driverDetails.getContactNo() + "',"
-									+ dateOfBirthOfDriver + ",'"
+									+ driverDetails.getContactNo() + "','"
+									+ dateOfBirthOfDriver + "','"
 									+ driverDetails.getLicense().getLicenseNo() + "','"
-									+ driverDetails.getLicense().getIssuingRTO() + "',"		
-									+ effectiveFrom + ","
-									+ expiryDate + ",'"
-									+ /*driverDetails.getLicense().getClazz().value() +*/  "','" //TODO add class and type
-									+ /*driverDetails.getLicense().getType().value() + */"');";
+									+ driverDetails.getLicense().getIssuingRTO() + "','"		
+									+ effectiveFrom + "','"
+									+ expiryDate + "','"
+									+ driverDetails.getLicense().getClazz().value().toUpperCase() +  "','" //TODO add class and type
+									+ driverDetails.getLicense().getType().value().toUpperCase() + "');";
 		
 		System.out.println(insertClaimString);
 		
 		try{
 			conn.setAutoCommit(false);
 			insertClaim = conn.prepareStatement(insertClaimString);
-			boolean isExexcute = insertClaim.execute();
+			boolean isExexcute = true; 
+		    insertClaim.execute();
 			if(isExexcute) {
 				//TODO correct select statement, we need to get claim id of last entered record
 				String selectClaimString = "select * from claims.Claims where policyNo='" + policyHolderDetails.getPolicyNo() + "';";
@@ -182,7 +183,7 @@ public class InsertNewClaim {
 						+ currDate
 						+")";
 				insertClaimStatus = conn.prepareStatement(insertClaimStatusString);
-				isExexcute = insertClaimStatus.execute();
+				insertClaimStatus.execute();
 				if(!isExexcute) {
 					throw new SQLException("insert new claim status failed");
 				}
@@ -194,6 +195,7 @@ public class InsertNewClaim {
 			sqle.printStackTrace();
 		}
 		System.out.println(claimId + " this is new claim ID");
+		conn.commit();
 		return claimId;
 	}
 
