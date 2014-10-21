@@ -15,7 +15,6 @@ public class DbConnector {
 			try {
 				con = DriverManager.getConnection(url+dbName,userName,password);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return con;

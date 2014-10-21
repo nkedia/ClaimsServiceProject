@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -32,8 +33,8 @@ public class ExistingClaims {
 		List<ClaimsType> claims = new ArrayList<ClaimsType>();
 		Connection conn = DbConnector.getConnection();
 		PreparedStatement getClaims = null;
-		String getClaimsString = "select * from claims.Claims where policyNo = " + policyNo;
-		
+		String getClaimsString = "select * from claims.Claims where policyNo = '" + policyNo + "'";
+		System.out.println(getClaimsString);
 		try {
 			getClaims = conn.prepareStatement(getClaimsString);
 			ResultSet rs = getClaims.executeQuery();
@@ -165,7 +166,8 @@ public class ExistingClaims {
 	
 		AccidentDetailsType accidentDetails = new AccidentDetailsType();
 		Date dateOfAccident = rs.getDate(22);
-	//	Time timeOfAccident = rs.getTime(23);
+		//getting exception while doing rs.gettime
+	    Time timeOfAccident = rs.getTime(23, new GregorianCalendar());
 		String speed = rs.getString(24);
 		String place = rs.getString(25);
 		String noOfPeople = rs.getString(26);
@@ -235,8 +237,8 @@ public class ExistingClaims {
 		license.setIssuingRTO(issuingRTO);
 		license.setEffectiveFrom(gc2);
 		license.setExpiryDate(gc3);
-		license.setClazz(ClassType.valueOf(licenseClass));
-		license.setType(Type.valueOf(licenseType));
+		license.setClazz(ClassType.fromValue(licenseClass));
+		license.setType(Type.fromValue(licenseType));
 		driverDetails.setLicense(license );
 		
 		claim.setDriverDetails(driverDetails);
