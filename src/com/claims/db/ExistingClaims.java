@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import javax.naming.NamingException;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -28,10 +29,11 @@ import com.claims.service.VehicleDetailsType;
 
 public class ExistingClaims {
 	
-	public static List<ClaimsType> getExistingClaimsByPolicyNo(String policyNo) {
+	public static List<ClaimsType> getExistingClaimsByPolicyNo(String policyNo) throws SQLException, DatatypeConfigurationException, NamingException, ClassNotFoundException{
 		
 		List<ClaimsType> claims = new ArrayList<ClaimsType>();
-		Connection conn = DbConnector.getConnection();
+		Connection conn;
+		conn = DbConnector.getConnection();
 		PreparedStatement getClaims = null;
 		String getClaimsString = "select * from claims.Claims where policyNo = '" + policyNo + "'";
 		System.out.println(getClaimsString);
@@ -49,7 +51,7 @@ public class ExistingClaims {
 				claims.add(claim);
 			}
 		} catch(SQLException | DatatypeConfigurationException e) {
-			e.printStackTrace();
+			throw e;
 		}
 		return claims;
 	}

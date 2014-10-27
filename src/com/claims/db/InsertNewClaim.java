@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 
+import javax.naming.NamingException;
+
 import com.claims.service.AccidentDetailsType;
 import com.claims.service.DriverDetailsType;
 import com.claims.service.PolicyHolderDetailsType;
@@ -16,9 +18,10 @@ public class InsertNewClaim {
 
 	public static int insertClaim(PolicyHolderDetailsType policyHolderDetails,
 			VehicleDetailsType vehicleDetails,
-			AccidentDetailsType accidentDetails, DriverDetailsType driverDetails) {
+			AccidentDetailsType accidentDetails, DriverDetailsType driverDetails) throws SQLException, ClassNotFoundException, NamingException{
 
-		Connection conn = DbConnector.getConnection();
+		Connection conn;
+		conn = DbConnector.getConnection();
 		PreparedStatement insertClaim = null;
 		PreparedStatement insertClaimStatus = null;
 		int claimId = 0;
@@ -173,7 +176,7 @@ public class InsertNewClaim {
 			conn.commit();
 		}
 		catch(SQLException sqle){
-			sqle.printStackTrace();
+			throw sqle;
 		}
 		System.out.println(claimId + " this is new claim ID");
 		

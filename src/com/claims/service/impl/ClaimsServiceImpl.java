@@ -21,9 +21,13 @@ public class ClaimsServiceImpl implements ClaimsService {
 			javax.xml.ws.Holder<java.lang.Boolean> result) {
 
 				int claimID = 0;
-				claimID = InsertNewClaim.insertClaim(policyHolderDetails, vehicleDetails, 
+				try {
+					claimID = InsertNewClaim.insertClaim(policyHolderDetails, vehicleDetails, 
 							accidentDetails, driverDetails);
-				
+				} catch (Exception e) {
+					e.printStackTrace();
+					throw new RuntimeException(e);
+				}
 				if(claimID != 0) {
 					claimsID.value = claimID + "";
 					result.value = true;
@@ -36,8 +40,13 @@ public class ClaimsServiceImpl implements ClaimsService {
 
 	public java.util.List<com.claims.service.ClaimsType> getExistingClaims(
 			java.lang.String policyId) {
-		
-				List<ClaimsType> list = ExistingClaims.getExistingClaimsByPolicyNo(policyId);
-				return list;
+		List<ClaimsType> list = null;
+		try{
+			list = ExistingClaims.getExistingClaimsByPolicyNo(policyId);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		return list;
 	}
 }
