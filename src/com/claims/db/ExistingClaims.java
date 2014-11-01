@@ -32,8 +32,7 @@ public class ExistingClaims {
 	public static List<ClaimsType> getExistingClaimsByPolicyNo(String policyNo) throws SQLException, DatatypeConfigurationException, NamingException, ClassNotFoundException{
 		
 		List<ClaimsType> claims = new ArrayList<ClaimsType>();
-		Connection conn;
-		conn = DbConnector.getConnection();
+		Connection conn = DbConnector.getConnection();
 		PreparedStatement getClaims = null;
 		String getClaimsString = "select * from claims.Claims where policyNo = '" + policyNo + "'";
 		System.out.println(getClaimsString);

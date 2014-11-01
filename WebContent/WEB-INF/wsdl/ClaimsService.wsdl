@@ -77,6 +77,26 @@ xmlns:dcd="localhost:8080/ClaimsService/documentDetails">
         		</xsd:sequence>
         	</xsd:complexType>
 
+        	<xsd:element name="updateExistingClaims">
+        		<xsd:complexType>
+        			<xsd:sequence>
+        				<xsd:element name="claimId" type="xsd:string"></xsd:element>
+        				<xsd:element name="policeStationName"
+        					type="xsd:string">
+        				</xsd:element>
+        				<xsd:element name="FIRNo"
+        					type="xsd:string">
+        				</xsd:element>
+        			</xsd:sequence>
+        		</xsd:complexType>
+        	</xsd:element>
+        	<xsd:element name="updateExistingClaimsResponse">
+        		<xsd:complexType>
+        			<xsd:sequence>
+        				<xsd:element name="result" type="xsd:boolean"></xsd:element>
+        			</xsd:sequence>
+        		</xsd:complexType>
+        	</xsd:element>
         </xsd:schema>
     </wsdl:types>
 
@@ -94,6 +114,12 @@ xmlns:dcd="localhost:8080/ClaimsService/documentDetails">
   	<wsdl:part name="parameters" element="tns:getExistingClaimsResponse"></wsdl:part>
   </wsdl:message>
 
+  <wsdl:message name="updateExistingClaimsRequest">
+  	<wsdl:part name="parameters" element="tns:updateExistingClaims"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateExistingClaimsResponse">
+  	<wsdl:part name="parameters" element="tns:updateExistingClaimsResponse"></wsdl:part>
+  </wsdl:message>
   <wsdl:portType name="ClaimsService">
         <wsdl:operation name="fileNewClaim">
         	<wsdl:input message="tns:fileNewClaimRequest"></wsdl:input>
@@ -102,6 +128,10 @@ xmlns:dcd="localhost:8080/ClaimsService/documentDetails">
         <wsdl:operation name="getExistingClaims">
         	<wsdl:input message="tns:getExistingClaimsRequest"></wsdl:input>
         	<wsdl:output message="tns:getExistingClaimsResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updateExistingClaims">
+        	<wsdl:input message="tns:updateExistingClaimsRequest"></wsdl:input>
+        	<wsdl:output message="tns:updateExistingClaimsResponse"></wsdl:output>
         </wsdl:operation>
   </wsdl:portType>
   
@@ -125,6 +155,15 @@ xmlns:dcd="localhost:8080/ClaimsService/documentDetails">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
+      <wsdl:operation name="updateExistingClaims">
+      <soap:operation soapAction="updateExistingClaims"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      </wsdl:operation>
   </wsdl:binding>
   
   <wsdl:service name="ClaimsService">

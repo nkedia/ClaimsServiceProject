@@ -70,11 +70,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link UpdateExistingClaimsResponse }
+     * 
+     */
+    public UpdateExistingClaimsResponse createUpdateExistingClaimsResponse() {
+        return new UpdateExistingClaimsResponse();
+    }
+
+    /**
      * Create an instance of {@link GetExistingClaims }
      * 
      */
     public GetExistingClaims createGetExistingClaims() {
         return new GetExistingClaims();
+    }
+
+    /**
+     * Create an instance of {@link UpdateExistingClaims }
+     * 
+     */
+    public UpdateExistingClaims createUpdateExistingClaims() {
+        return new UpdateExistingClaims();
     }
 
     /**

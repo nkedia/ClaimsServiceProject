@@ -3,15 +3,30 @@ package com.claims.service.impl;
 
 import java.util.List;
 
-import javax.jws.WebService;
-
 import com.claims.db.ExistingClaims;
 import com.claims.db.InsertNewClaim;
-import com.claims.service.ClaimsService;
-import com.claims.service.ClaimsType;
+import com.claims.db.UpdateExistingClaim;
+import com.claims.service.*;
+
+import javax.jws.WebService;
 
 @WebService(serviceName = "ClaimsService", endpointInterface = "com.claims.service.ClaimsService", targetNamespace = "localhost:8080/ClaimsService/")
 public class ClaimsServiceImpl implements ClaimsService {
+	
+	public boolean updateExistingClaims(java.lang.String claimId,
+			java.lang.String policeStationName, java.lang.String firNo) {
+		
+		boolean result = false;
+		try {
+			result = UpdateExistingClaim.updateClaim(claimId, policeStationName, firNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = false;
+			throw new RuntimeException(e);
+		}
+		return result;
+	}
+
 	public void fileNewClaim(
 			com.claims.service.PolicyHolderDetailsType policyHolderDetails,
 			com.claims.service.VehicleDetailsType vehicleDetails,

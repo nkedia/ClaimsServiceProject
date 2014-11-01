@@ -1,6 +1,7 @@
 package com.claims.db;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import javax.naming.InitialContext;
@@ -17,4 +18,5 @@ public class DbConnector {
 		System.out.println("Connection is " + con);
 		return con;
 	}
+	
 }
