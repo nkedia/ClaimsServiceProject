@@ -168,7 +168,7 @@ public class ExistingClaims {
 		AccidentDetailsType accidentDetails = new AccidentDetailsType();
 		Date dateOfAccident = rs.getDate(22);
 		//getting exception while doing rs.gettime
-	  //  Time timeOfAccident = rs.getTime(23, new GregorianCalendar());
+	   // Time timeOfAccident = rs.getTime(23, new GregorianCalendar());
 		String speed = rs.getString(24);
 		String place = rs.getString(25);
 		String noOfPeople = rs.getString(26);
