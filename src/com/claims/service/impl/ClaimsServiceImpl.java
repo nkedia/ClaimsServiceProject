@@ -22,7 +22,6 @@ public class ClaimsServiceImpl implements ClaimsService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			result = false;
-			throw new RuntimeException(e);
 		}
 		return result;
 	}
@@ -39,14 +38,10 @@ public class ClaimsServiceImpl implements ClaimsService {
 				try {
 					claimID = InsertNewClaim.insertClaim(policyHolderDetails, vehicleDetails, 
 							accidentDetails, driverDetails);
-				} catch (Exception e) {
-					e.printStackTrace();
-					throw new RuntimeException(e);
-				}
-				if(claimID != 0) {
 					claimsID.value = claimID + "";
 					result.value = true;
-				} else {
+				} catch (Exception e) {
+					e.printStackTrace();
 					claimsID.value = claimID + "";
 					result.value = false;
 				}
@@ -60,7 +55,6 @@ public class ClaimsServiceImpl implements ClaimsService {
 			list = ExistingClaims.getExistingClaimsByPolicyNo(policyId);
 		} catch(Exception e) {
 			e.printStackTrace();
-			throw new RuntimeException(e);
 		}
 		return list;
 	}

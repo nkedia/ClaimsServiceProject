@@ -5,7 +5,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 
 import javax.naming.NamingException;
 
@@ -63,8 +62,6 @@ public class InsertNewClaim {
 						driverDetails.getLicense().getExpiryDate().getMonth() + "-" + 
 						driverDetails.getLicense().getExpiryDate().getDay() );
 		
-		Time timeOfAccident = new Time(accidentDetails.getTime().getMillisecond());
-
 		String insertClaimString = "INSERT INTO claims.Claims" +
 									"(policyNo, "
 									+ "coverNoteNo, "
@@ -128,7 +125,7 @@ public class InsertNewClaim {
 									+ vehicleDetails.getTypeOfFuel() + "','"
 									+ vehicleDetails.getColor() + "','"
 									+ dateOfAccident + "','"
-									+ timeOfAccident + "','" 
+									+ accidentDetails.getTime() + "','" 
 									+ accidentDetails.getSpeed() + "','"
 									+ accidentDetails.getPlace() + "','"
 									+ accidentDetails.getNoOfPeopleTravelling() + "','"

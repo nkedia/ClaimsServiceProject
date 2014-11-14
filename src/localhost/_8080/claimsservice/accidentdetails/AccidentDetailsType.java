@@ -1,5 +1,5 @@
 
-package com.claims.service;
+package localhost._8080.claimsservice.accidentdetails;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -36,7 +36,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "accidentDetailsType", namespace = "localhost:8080/ClaimsService/accidentDetails", propOrder = {
+@XmlType(name = "accidentDetailsType", propOrder = {
     "dateOfAccident",
     "time",
     "speed",
@@ -48,22 +48,22 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class AccidentDetailsType {
 
-    @XmlElement(namespace = "localhost:8080/ClaimsService/accidentDetails", required = true)
+    @XmlElement(required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar dateOfAccident;
-    @XmlElement(namespace = "localhost:8080/ClaimsService/accidentDetails", required = true)
+    @XmlElement(required = true)
     protected String time;
-    @XmlElement(namespace = "localhost:8080/ClaimsService/accidentDetails", required = true)
+    @XmlElement(required = true)
     protected String speed;
-    @XmlElement(namespace = "localhost:8080/ClaimsService/accidentDetails", required = true)
+    @XmlElement(required = true)
     protected String place;
-    @XmlElement(namespace = "localhost:8080/ClaimsService/accidentDetails", required = true)
+    @XmlElement(required = true)
     protected String noOfPeopleTravelling;
-    @XmlElement(namespace = "localhost:8080/ClaimsService/accidentDetails", required = true)
+    @XmlElement(required = true)
     protected String policeStationName;
-    @XmlElement(name = "FIRNo", namespace = "localhost:8080/ClaimsService/accidentDetails", required = true)
+    @XmlElement(name = "FIRNo", required = true)
     protected String firNo;
-    @XmlElement(name = "Mileage", namespace = "localhost:8080/ClaimsService/accidentDetails", required = true)
+    @XmlElement(name = "Mileage", required = true)
     protected String mileage;
 
     /**

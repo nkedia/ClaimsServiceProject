@@ -5,13 +5,11 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
-import java.sql.Timestamp;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import javax.naming.NamingException;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -29,7 +27,7 @@ import com.claims.service.VehicleDetailsType;
 
 public class ExistingClaims {
 	
-	public static List<ClaimsType> getExistingClaimsByPolicyNo(String policyNo) throws SQLException, DatatypeConfigurationException, NamingException, ClassNotFoundException{
+	public static List<ClaimsType> getExistingClaimsByPolicyNo(String policyNo) throws Exception{
 		
 		List<ClaimsType> claims = new ArrayList<ClaimsType>();
 		Connection conn = DbConnector.getConnection();
@@ -49,7 +47,7 @@ public class ExistingClaims {
 				getClaimDriverDetails(rs, claim);
 				claims.add(claim);
 			}
-		} catch(SQLException | DatatypeConfigurationException e) {
+		} catch(SQLException | DatatypeConfigurationException | ParseException e) {
 			throw e;
 		}
 		return claims;
@@ -163,12 +161,12 @@ public class ExistingClaims {
 	}
 
 	private static void getClaimAccidentDetails(ResultSet rs, 
-			ClaimsType claim) throws SQLException, DatatypeConfigurationException {
+			ClaimsType claim) throws SQLException, DatatypeConfigurationException, ParseException {
 	
 		AccidentDetailsType accidentDetails = new AccidentDetailsType();
 		Date dateOfAccident = rs.getDate(22);
-		//getting exception while doing rs.gettime
-	    Time timeOfAccident = rs.getTime(23);
+	    String timeOfAccident = rs.getString(23);
+	    System.out.println("timeOfAccident" + timeOfAccident);
 		String speed = rs.getString(24);
 		String place = rs.getString(25);
 		String noOfPeople = rs.getString(26);
@@ -179,15 +177,10 @@ public class ExistingClaims {
 		GregorianCalendar cal1 = new GregorianCalendar();
 		cal1.setTime(dateOfAccident);
 		XMLGregorianCalendar gc1 =
-		     DatatypeFactory.newInstance().newXMLGregorianCalendar(cal1); 
-		GregorianCalendar cal2 = new GregorianCalendar();
-	//TODO SET TIME
-		//cal1.setTime(timeOfAccident);
-		XMLGregorianCalendar gc2 =
-		     DatatypeFactory.newInstance().newXMLGregorianCalendar(cal2); 
+		     DatatypeFactory.newInstance().newXMLGregorianCalendar(cal1);
 		
 		accidentDetails.setDateOfAccident(gc1);
-		accidentDetails.setTime(gc2);
+		accidentDetails.setTime(timeOfAccident);
 		accidentDetails.setSpeed(speed);
 		accidentDetails.setPlace(place);
 		accidentDetails.setNoOfPeopleTravelling(noOfPeople);

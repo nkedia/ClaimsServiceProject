@@ -10,8 +10,8 @@ import javax.sql.DataSource;
 
 public class DbConnector {
 	
-	public static Connection getConnection() {
-		return getConnectionFromDriver();
+	public static Connection getConnection() throws SQLException, ClassNotFoundException, NamingException{
+		return getConnectionFromDs();
 	}
 	
 	public static Connection getConnectionFromDs() throws SQLException, ClassNotFoundException, NamingException {

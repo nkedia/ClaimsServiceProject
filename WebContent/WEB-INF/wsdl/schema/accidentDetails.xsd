@@ -9,7 +9,7 @@
     <xsd:complexType name="accidentDetailsType">
     	<xsd:sequence>
     		<xsd:element name="dateOfAccident" type="date"></xsd:element>
-    		<xsd:element name="time" type="time"></xsd:element>
+    		<xsd:element name="time" type="string"></xsd:element>
     		<xsd:element name="speed" type="string"></xsd:element>
     		<xsd:element name="place" type="string"></xsd:element>
     		<xsd:element name="noOfPeopleTravelling" type="string"></xsd:element>
